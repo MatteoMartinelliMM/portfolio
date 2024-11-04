@@ -8,26 +8,42 @@ function Knowledge() {
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-12">
             {
                 Array.from(knowledgeMap.keys()).map(k =>
-                    <div key={k.label()} className="flex flex-col lg:ml-10">
-                        <div key={k.style()} className={`divider divider-start divider-${k.style()}`}><h2
+                    <div key={k.label()} className="flex flex-col ">
+                        <div key={k.dividerStyle()} className={`divider divider-start ${k.dividerStyle()}`}><h2
                             key={k.label()}
                             className="text-2xl">{k.label()}</h2>
                         </div>
-
                         {
                             knowledgeMap.get(k).map(v =>
                                 <div key={`${k.label()}-${v.label}`}
                                      className="flex justify-between items-center gap-8 w-full">
                                     <span className="w-1/4 text-left">{`${v.label.toUpperCase()}:`}</span>
-                                    <progress className={`progress progress-${k.style()} w-3/4 `} value={v.value}
+                                    <progress className={`progress ${k.progressStyle()} w-3/4 `} value={v.value}
                                               max="10"></progress>
                                 </div>
                             )
                         }
-
                     </div>
                 )
             }
+        </div>
+        <div className="container mx-auto flex flex-col mt-5">
+            <div className="divider divider-start divider-success"><h2 className="text-2xl">SPOKEN LANGUAGES</h2></div>
+            <div className="flex justify-between items-center gap-8 w-full">
+                <span className="w-1/6 text-left">ITALIAN:</span>
+                <progress className={`progress progress-success w-5/6 `} value="10"
+                          max="10"></progress>
+            </div>
+            <div className="flex justify-between items-center gap-8 w-full">
+                <span className="w-1/6 text-left">ENGLISH:</span>
+                <progress className={`progress progress-success w-5/6 `} value="9"
+                          max="10"></progress>
+            </div>
+            <div className="flex justify-between items-center gap-8 w-full">
+                <span className="w-1/6 text-left">GERMAN:</span>
+                <progress className={`progress progress-success w-5/6 `} value="8"
+                          max="10"></progress>
+            </div>
         </div>
     </div>
 
@@ -58,52 +74,5 @@ function init() {
     return knowledgeMap
 }
 
-{/*
-    <div className="flex flex-col">
-
-
-
-
-                <span>KOTLIN:<progress className="progress progress-primary w-56 ml-3" value="40"
-                                       max="100"></progress></span>
-            <span>FLUTTER:<progress className="progress progress-primary w-56 ml-3" value="40"
-                                        max="100"></progress></span>
-
-        </div>
-        <div>
-            <div className="divider divider-start divider-accent lg:divider-end"><h2 className="text-2xl">WEB</h2></div>
-            <div className="flex flex-col">
-            <span className="text-left">JAVASCRIPT:<progress className="progress progress-accent w-56 ml-3" value="40"
-                                       max="100"></progress></span>
-                <span>REACT:<progress className="progress progress-accent w-56 ml-3" value="40"
-                                      max="100"></progress></span>
-                <span>NEXTJS:<progress className="progress progress-accent w-56 ml-3" value="40"
-                                       max="100"></progress></span>
-                <span>TAILWIND:<progress className="progress progress-accent w-56 ml-3" value="40"
-                                         max="100"></progress></span>
-            </div>
-        </div>
-        <div>
-            <div className="divider divider-start divider-warning"><h2 className="text-2xl">DATABASE & BACKEND</h2>
-            </div>
-            <div className="flex flex-col">
-            <span>POSTRESQL:<progress className="progress progress-warning w-56 ml-3" value="40"
-                                      max="100"></progress></span>
-                <span>FIREBASE:<progress className="progress progress-warning w-56 ml-3" value="40"
-                                         max="100"></progress></span>
-                <span>SUPABASE:<progress className="progress progress-warning w-56 ml-3" value="40"
-                                         max="100"></progress></span>
-                <span>MONGODB:<progress className="progress progress-warning w-56 ml-3" value="40"
-                                        max="100"></progress></span>
-            </div>
-        </div>
-        <div>
-            <div className="divider divider-start divider-error"><h2 className="text-2xl">MEDIA PROCESSING</h2></div>
-            <div className="flex flex-col">
-            <span>FFMPEG:<progress className="progress progress-error w-56 ml-3" value="40"
-                                   max="100"></progress></span>
-            </div>
-        </div>*/
-}
 
 export default Knowledge

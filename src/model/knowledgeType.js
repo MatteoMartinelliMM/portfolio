@@ -9,17 +9,30 @@ class KnowledgeType {
     static MD_PROCESS = new KnowledgeType('media proc.');
 
 
-    style() {
+    dividerStyle() {
 
         switch (this.type) {
             case 'mobile':
-                return 'primary'
+                return 'divider-primary'
             case 'web':
-                return 'accent'
+                return 'divider-accent'
             case 'db & backend':
-                return 'warning'
+                return 'divider-warning'
             case 'media proc.':
-                return 'error'
+                return 'divider-error'
+        }
+    }
+
+    progressStyle(){
+        switch (this.type) {
+            case 'mobile':
+                return 'progress-primary'
+            case 'web':
+                return 'progress-accent'
+            case 'db & backend':
+                return 'progress-warning'
+            case 'media proc.':
+                return 'progress-error'
         }
     }
 
