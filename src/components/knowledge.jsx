@@ -4,27 +4,31 @@ import KnowledgeType from "../model/knowledgeType.js";
 const knowledgeMap = init()
 
 function Knowledge() {
-    return <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-12">
-        {
-            Array.from(knowledgeMap.keys()).map(k =>
-                <div key={k.label()} className="flex flex-col lg:ml-10">
-                    <div key={k.style()} className={`divider divider-start divider-${k.style()}`}><h2 key={k.label()}
-                                                                                                      className="text-2xl">{k.label()}</h2>
+    return <div className="container mx-auto">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-12">
+            {
+                Array.from(knowledgeMap.keys()).map(k =>
+                    <div key={k.label()} className="flex flex-col lg:ml-10">
+                        <div key={k.style()} className={`divider divider-start divider-${k.style()}`}><h2
+                            key={k.label()}
+                            className="text-2xl">{k.label()}</h2>
+                        </div>
+
+                        {
+                            knowledgeMap.get(k).map(v =>
+                                <div key={`${k.label()}-${v.label}`}
+                                     className="flex justify-between items-center gap-8 w-full">
+                                    <span className="w-1/4 text-left">{`${v.label.toUpperCase()}:`}</span>
+                                    <progress className={`progress progress-${k.style()} w-3/4 `} value={v.value}
+                                              max="10"></progress>
+                                </div>
+                            )
+                        }
+
                     </div>
-
-                    {
-                        knowledgeMap.get(k).map(v =>
-                            <div key={`${k.label()}-${v.label}`} className="flex justify-between items-center gap-8 w-full">
-                                <span className="w-1/4 text-left">{`${v.label.toUpperCase()}:`}</span>
-                                <progress className={`progress progress-${k.style()} w-3/4 `} value={v.value}
-                                          max="10"></progress>
-                            </div>
-                        )
-                    }
-
-                </div>
-            )
-        }
+                )
+            }
+        </div>
     </div>
 
 }

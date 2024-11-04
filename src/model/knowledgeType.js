@@ -10,6 +10,7 @@ class KnowledgeType {
 
 
     style() {
+
         switch (this.type) {
             case 'mobile':
                 return 'primary'

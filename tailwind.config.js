@@ -8,6 +8,7 @@ export default {
         "./index.html",
         "./src/**/*.{html,js,jsx}"
     ],
+    safelist: ["divider-primary"],
     theme: {
         sans: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
     },
