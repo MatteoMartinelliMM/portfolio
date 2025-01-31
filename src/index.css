@@ -17,3 +17,40 @@ html {
     scrollbar-width: none;  /* Firefox */
 }
 
+@layer utilities {
+    .masonry-grid {
+        @apply columns-1 sm:columns-1 md:columns-2 lg:columns-3; /* Colonne responsive */
+    }
+
+    .masonry-item {
+        @apply break-inside-avoid
+    }
+}
+
+.clickable-card{
+    @apply transform transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-2xl active:scale-95;
+}
+
+.card-description {
+    max-height: 6rem; /* Imposta l'altezza massima */
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.card-description.expanded {
+    max-height: none; /* Rimuove la limitazione dell'altezza quando è espansa */
+}
+
+.card-description::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2rem;
+}
+
+.card-description.expanded::after {
+    opacity: 0;
+}

@@ -1,4 +1,4 @@
-import logo from '../assets/logo.png'
+import logo from '../../public/assets/logo.png'
 import HamburgerMenu from "./icons/hamburgerMenu.jsx";
 
 function Navbar() {
