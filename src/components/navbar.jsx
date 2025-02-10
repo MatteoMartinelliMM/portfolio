@@ -1,4 +1,4 @@
-import logo from '../../public/assets/logo.png'
+import logo from '../../public/assets/logo.svg'
 import HamburgerMenu from "./icons/hamburgerMenu.jsx";
 
 function Navbar() {
@@ -7,7 +7,7 @@ function Navbar() {
             <div className="navbar-start">
 
                 <div className="flex-1">
-                    <img src={logo} className="h-3" alt="home"/>
+                    <img src={logo} className="h-4" alt="home"/>
                 </div>
             </div>
 

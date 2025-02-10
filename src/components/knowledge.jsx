@@ -1,5 +1,7 @@
 import KnowledgeModel from "../model/knowledgeModel.js";
 import KnowledgeType from "../model/knowledgeType.js";
+import AnimatedProgress from "./animatedProgress.jsx";
+import FadeComponent from "./fadeComponent.jsx";
 
 const knowledgeMap = init()
 
@@ -17,9 +19,9 @@ function Knowledge() {
                             knowledgeMap.get(k).map(v =>
                                 <div key={`${k.label()}-${v.label}`}
                                      className="flex justify-between items-center gap-8 w-full">
-                                    <span className="w-1/4 text-left">{`${v.label.toUpperCase()}:`}</span>
-                                    <progress className={`progress ${k.progressStyle()} w-3/4 `} value={v.value}
-                                              max="10"></progress>
+                                    <FadeComponent><span className="w-1/4 text-left">{`${v.label.toUpperCase()}:`}</span></FadeComponent>
+                                    <AnimatedProgress value={v.value}
+                                                      className={`${k.progressStyle()} w-3/4`}></AnimatedProgress>
                                 </div>
                             )
                         }
@@ -30,19 +32,19 @@ function Knowledge() {
         <div className="container mx-auto flex flex-col mt-5">
             <div className="divider divider-start divider-success"><h2 className="text-2xl">SPOKEN LANGUAGES</h2></div>
             <div className="flex justify-between items-center gap-8 w-full">
-                <span className="w-1/6 text-left">ITALIAN:</span>
-                <progress className={`progress progress-success w-5/6 `} value="10"
-                          max="10"></progress>
+                <FadeComponent><span className="w-1/6 text-left">ITALIAN:</span></FadeComponent>
+                <AnimatedProgress className={`progress progress-success w-5/6 `} value="10"
+                                  max="10"></AnimatedProgress>
             </div>
             <div className="flex justify-between items-center gap-8 w-full">
-                <span className="w-1/6 text-left">ENGLISH:</span>
-                <progress className={`progress progress-success w-5/6 `} value="9"
-                          max="10"></progress>
+                <FadeComponent><span className="w-1/6 text-left">ENGLISH:</span></FadeComponent>
+                <AnimatedProgress className={`progress progress-success w-5/6 `} value="9"
+                                  max="10"></AnimatedProgress>
             </div>
             <div className="flex justify-between items-center gap-8 w-full">
-                <span className="w-1/6 text-left">GERMAN:</span>
-                <progress className={`progress progress-success w-5/6 `} value="8"
-                          max="10"></progress>
+                <FadeComponent><span className="w-1/6 text-left">GERMAN:</span></FadeComponent>
+                <AnimatedProgress className={`progress progress-success w-5/6 `} value="8"
+                                  max="10"></AnimatedProgress>
             </div>
         </div>
     </div>

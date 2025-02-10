@@ -31,16 +31,9 @@ html {
     @apply transform transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-2xl active:scale-95;
 }
 
-.card-description {
-    max-height: 6rem; /* Imposta l'altezza massima */
-    overflow: hidden;
-    position: relative;
-    transition: max-height 0.3s ease-in-out;
-}
 
-.card-description.expanded {
-    max-height: none; /* Rimuove la limitazione dell'altezza quando è espansa */
-}
+
+
 
 .card-description::after {
     content: "";
@@ -53,4 +46,13 @@ html {
 
 .card-description.expanded::after {
     opacity: 0;
+}
+
+.main-body {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: center;
 }

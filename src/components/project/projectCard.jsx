@@ -30,14 +30,9 @@ function CardContent({project, isExpanded, setIsExpanded}) {
                     </svg>
                     {`${isPublic(project) ? 'public' : 'private'}`}</div>
             </h2>
-            <div className={`card-description ${isExpanded ? "expanded " : "bg-gradient-to-b from-transparent to-base-200"}`}>
+            <div className="card-description ">
                 {project.description}
             </div>
-            {project.description.length > 80 && (
-                <button onClick={(e) => { e.stopPropagation(); setIsExpanded(prev => !prev); }}>
-                    {isExpanded ? 'Leggi meno' : 'Leggi di più'}
-                </button>
-            )}
             <div className="card-actions mt-3">
                 {
                     project.techList.map((t, i) =>

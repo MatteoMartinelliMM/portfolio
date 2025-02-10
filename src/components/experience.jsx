@@ -1,19 +1,54 @@
 import 'react'
 import TimelineIcon from "./timeline/timelineIcon.jsx";
 import TimelineElement from "./timeline/timelineElement.jsx";
+import {useEffect, useRef, useState} from "react";
+
+function attachListners(listRef, setLineHeight) {
+
+}
 
 function Experience() {
-    return <div>
+    const listRef = useRef(null)
+    const [lineHeight, setLineHeight] = useState(0);
 
-        <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+    useEffect(() => {
+        const items = listRef.current?.querySelectorAll('li')
+        if (!items) return
+
+        const obs = new IntersectionObserver(
+            (entries) => {
+                const maxBottom = entries.reduce((max, entry) => entry.isIntersecting ?
+                        Math.max(max, entry.target.getBoundingClientRect().bottom) : max
+                    , lineHeight)
+                console.log(`maxBottom is ${maxBottom} `)
+                if (listRef.current) {
+                    const ulTop = listRef.current.getBoundingClientRect().top
+                    console.log(`ulTop is ${ulTop} `)
+                    setLineHeight(maxBottom - ulTop)
+                }
+            },
+            {threshold:0}
+        )
+        items.forEach((i) => obs.observe(i))
+        return () => items.forEach(i => obs.unobserve(i))
+    }, []);
+    return <div>
+        <ul ref={listRef}
+            className="overflow-hidden transition-all duration-700 ease-in-out timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
+            style={{maxHeight: `${lineHeight}px`}}
+        >
             <li>
                 <TimelineIcon work={false}></TimelineIcon>
                 <TimelineElement time="2016-2018" title="Bachelor's Degree in Computer Science @Unimi">
-                    iPhone is a line of smartphones produced by Apple Inc. that use Apple&apos;s own iOS mobile
-                    operating system. The first-generation iPhone was announced by then-Apple CEO Steve Jobs on
-                    January 9, 2007. Since then, Apple has annually released new iPhone models and iOS updates. As
-                    of November 1, 2018, more than 2.2 billion iPhones had been sold. As of 2022, the iPhone
-                    accounts for 15.6% of global smartphone market share
+                    During my time at the University of Milan (Unimi), I pursued a Bachelor's degree in Computer
+                    Science,
+                    developing a solid foundation in key areas of the field such as algorithms, data structures,
+                    programming,
+                    operating systems, and databases. Alongside my studies, I worked full-time,
+                    which limited the time I could fully dedicate to university. As a result,
+                    I decided to pause my studies to focus on my professional growth and career development.
+                    This decision allowed me to gain valuable hands-on experience in software development,
+                    which has been instrumental in shaping my technical skills.
                 </TimelineElement>
                 <hr/>
             </li>
@@ -21,11 +56,18 @@ function Experience() {
                 <hr/>
                 <TimelineIcon></TimelineIcon>
                 <TimelineElement left={false} time="2018-2020" title="Android developer @DSGroup">
-                    The Apple Macintosh—later rebranded as the Macintosh 128K—is the original Apple Macintosh
-                    personal computer. It played a pivotal role in establishing desktop publishing as a general
-                    office function. The motherboard, a 9 in (23 cm) CRT monitor, and a floppy drive were housed
-                    in a beige case with integrated carrying handle; it came with a keyboard and single-button
-                    mouse.
+                    During this time, I worked on a B2B project for Poste Italiane, collaborating with designers,
+                    backend developers,
+                    and analysts to find the best solutions. This experience allowed me to work with both legacy and
+                    modern approaches to Android development.
+                    On the legacy side, I worked with Java, MVC, MVP, SQLite, and Room on devices running older versions
+                    of the operating system.
+                    On the other hand, I also gained experience with newer technologies such as Android Jetpack, Kotlin,
+                    MVVM, LiveData, Room, and Retrofit,
+                    working on more innovative solutions. Additionally, I was responsible for implementing both UI and
+                    non-UI tests
+                    (including unit tests and integration tests), ensuring the quality and reliability of the
+                    applications we developed.
                 </TimelineElement>
                 <hr/>
             </li>
@@ -33,57 +75,74 @@ function Experience() {
                 <hr/>
                 <TimelineIcon></TimelineIcon>
                 <TimelineElement time="2020-2023" title={`Android/Flutter Developer & Scrum Member \n@DSGroup`}>
-                    iMac is a family of all-in-one Mac desktop computers designed and built by Apple Inc. It has
-                    been the primary part of Apple&apos;s consumer desktop offerings since its debut in August 1998,
-                    and has evolved through seven distinct forms
+                    During this period, I worked on projects for Enel, developing applications both for Android and
+                    using Flutter.
+                    This experience gave me a comprehensive understanding of the Android operating system, as I had to
+                    work at a lower level,
+                    utilizing content providers and other system components. As a member of a Scrum team,
+                    I was the only developer coordinating directly with the analyst for the implementation of two major
+                    projects.
+                    This role taught me how to handle large-scale projects independently, requiring strong
+                    problem-solving and project management skills.
+                    I was involved in the entire development lifecycle, from design and architecture to implementation
+                    and testing,
+                    gaining valuable experience in working autonomously on complex projects.
                 </TimelineElement>
                 <hr/>
             </li>
             <li>
                 <hr/>
                 <TimelineIcon work={false}></TimelineIcon>
-                <TimelineElement left={false} time="2024" title="ATC Flutter Certified Application Developer">
-                    The iPod is a discontinued series of portable media players and multi-purpose mobile devices
-                    designed and marketed by Apple Inc. The first version was released on October 23, 2001, about
-                    8+1⁄2 months after the Macintosh version of iTunes was released. Apple sold an estimated 450
-                    million iPod products as of 2022. Apple discontinued the iPod product line on May 10, 2022. At
-                    over 20 years, the iPod brand is the oldest to be discontinued by Apple
+                <TimelineElement left={false} time="2023" title="ATC Flutter Certified Application Developer">
+                    I obtained the ATC Flutter Certified Application Developer certification, which further validated my
+                    expertise
+                    in Flutter and Dart for mobile application development.
                 </TimelineElement>
                 <hr/>
             </li>
             <li>
                 <hr/>
                 <TimelineIcon work={false}></TimelineIcon>
-                <TimelineElement time="2024" title="Google Decelopers Android Certification">
-                    The iPod is a discontinued series of portable media players and multi-purpose mobile devices
-                    designed and marketed by Apple Inc. The first version was released on October 23, 2001, about
-                    8+1⁄2 months after the Macintosh version of iTunes was released. Apple sold an estimated 450
-                    million iPod products as of 2022. Apple discontinued the iPod product line on May 10, 2022. At
-                    over 20 years, the iPod brand is the oldest to be discontinued by Apple
+                <TimelineElement time="2023" title="Google Developers Android Certification">
+                    I obtained the Google Developers Android Certification, validating my skills in Android application
+                    development and reinforcing my expertise in building high-quality, scalable Android apps.
+                </TimelineElement>
+                <hr/>
+            </li>
+            <li>
+                <hr/>
+                <TimelineIcon work={false}></TimelineIcon>
+                <TimelineElement left={false} time="2023" title="PSM1 (Professional Scrum Master I)">
+                    The Professional Scrum Master I (PSM I) certification demonstrates my understanding of Scrum
+                    principles and practices,
+                    focusing on the Scrum Master role. I gained skills in facilitating teams, resolving conflicts, and
+                    optimizing workflows
+                    to ensure continuous improvement and efficient Agile processes.
                 </TimelineElement>
                 <hr/>
             </li>
             <li>
                 <hr/>
                 <TimelineIcon></TimelineIcon>
-                <TimelineElement left={false} time="2024" title={`Flutter Developer & Product designer \n@Kurt`}>
-                    The iPod is a discontinued series of portable media players and multi-purpose mobile devices
-                    designed and marketed by Apple Inc. The first version was released on October 23, 2001, about
-                    8+1⁄2 months after the Macintosh version of iTunes was released. Apple sold an estimated 450
-                    million iPod products as of 2022. Apple discontinued the iPod product line on May 10, 2022. At
-                    over 20 years, the iPod brand is the oldest to be discontinued by Apple
+                <TimelineElement time="2024" title={`Flutter Developer & Product designer \n@Kurt`}>
+                    I briefly collaborated with a startup focused on connecting people who enjoy playing soccer. During
+                    this time,
+                    I contributed to the development of new features and made a significant impact on improving the user
+                    experience based on feedback from users.
+                    To this day, the voting system I designed is still in use.
                 </TimelineElement>
                 <hr/>
             </li>
             <li>
                 <hr/>
                 <TimelineIcon work={false}></TimelineIcon>
-                <TimelineElement time="2024-now" title="Resuming university">
-                    The iPod is a discontinued series of portable media players and multi-purpose mobile devices
-                    designed and marketed by Apple Inc. The first version was released on October 23, 2001, about
-                    8+1⁄2 months after the Macintosh version of iTunes was released. Apple sold an estimated 450
-                    million iPod products as of 2022. Apple discontinued the iPod product line on May 10, 2022. At
-                    over 20 years, the iPod brand is the oldest to be discontinued by Apple
+                <TimelineElement left={false} time="2024-now" title="Resuming university">
+                    I decided to leave my full-time job and pursue a freelance career as a developer to better manage my
+                    time and complete my university studies.
+                    This decision was driven by my desire to continuously learn new skills. Since returning to
+                    university,
+                    I've enhanced my knowledge in functional programming and developed a strong passion for
+                    cybersecurity.
                 </TimelineElement>
                 <hr/>
             </li>
